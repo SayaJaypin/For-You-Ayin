@@ -2,6 +2,7 @@
  * ==============================================================================
  * ENGINE UTAMA: PERAYAAN AZIZAH AIN FADILLAH
  * DIBANGUN SECARA BRUTAL DENGAN STANDAR TERTINGGI 12 JULI 2026.
+ * EDISI REVISI: OPTIMALISASI PRESISI HITBOX LAYAR SENTUH
  * ==============================================================================
  */
 
@@ -25,7 +26,6 @@ class LuxuryExperience {
 
     // Menginjeksi seluruh struktur DOM untuk menjaga HTML tetap bersih
     buildDOM() {
-        // Hero Section
         document.getElementById('hero').innerHTML = `
             <div class="lux-panel">
                 <p class="text-tracking">Sebuah Persembahan Waktu</p>
@@ -35,7 +35,6 @@ class LuxuryExperience {
             </div>
         `;
 
-        // Clock Section
         document.getElementById('clock').innerHTML = `
             <div class="lux-panel">
                 <p class="text-tracking">Denyut Waktu Kita</p>
@@ -44,7 +43,6 @@ class LuxuryExperience {
             </div>
         `;
 
-        // Gallery Section
         document.getElementById('gallery').innerHTML = `
             <div class="lux-panel">
                 <h2 class="title-main text-center" style="font-size: 3rem;">Jejak Memori</h2>
@@ -59,7 +57,6 @@ class LuxuryExperience {
             </div>
         `;
 
-        // Music Player
         document.getElementById('music').innerHTML = `
             <div class="lux-panel player-core">
                 <div class="vinyl-record" id="cover-art">
@@ -83,14 +80,12 @@ class LuxuryExperience {
             </div>
         `;
 
-        // Quotes
         document.getElementById('quotes').innerHTML = `
             <div class="lux-panel">
                 <div class="quote-display" id="quote-text"></div>
             </div>
         `;
 
-        // Gift Box
         document.getElementById('gift').innerHTML = `
             <div class="lux-panel">
                 <div class="gift-wrapper">
@@ -100,7 +95,6 @@ class LuxuryExperience {
             </div>
         `;
 
-        // Games Hub
         document.getElementById('games').innerHTML = `
             <div class="lux-panel">
                 <h2 class="title-main text-center" style="font-size: 3rem;">Tiga Ujian Kecil</h2>
@@ -109,7 +103,7 @@ class LuxuryExperience {
                 <!-- Game 1 -->
                 <div class="game-area" id="area-game-1">
                     <h3 class="game-title">Ujian Pertama: Langkah Tak Terhenti</h3>
-                    <p class="game-desc">Ketuk kanvas untuk melompat. Capai skor 1000.</p>
+                    <p class="game-desc">Ketuk layar secara presisi untuk melompat. Capai skor 1000.</p>
                     <div class="canvas-wrap">
                         <canvas id="cvs-dino" width="700" height="250"></canvas>
                         <div class="score-hud" id="hud-dino">Skor: 0</div>
@@ -122,7 +116,7 @@ class LuxuryExperience {
                 <!-- Game 2 -->
                 <div class="game-area hidden-hard" id="area-game-2">
                     <h3 class="game-title">Ujian Kedua: Menjaga Presisi</h3>
-                    <p class="game-desc">Tangkap 15 ornamen bulat merah. Hindari bentuk persegi gelap.</p>
+                    <p class="game-desc">Sentuh 15 ornamen bulat merah. Hindari bentuk persegi gelap.</p>
                     <div class="canvas-wrap">
                         <canvas id="cvs-catch" width="700" height="250"></canvas>
                         <div class="score-hud" id="hud-catch">Tertangkap: 0 / 15</div>
@@ -141,7 +135,6 @@ class LuxuryExperience {
             </div>
         `;
 
-        // Secret Ending
         document.getElementById('secret').innerHTML = `
             <div class="particle-container" id="secret-particles"></div>
             <div class="core-3d-wrap" id="secret-core">
@@ -157,9 +150,6 @@ class LuxuryExperience {
         `;
     }
 
-    // ==========================================
-    // 60FPS PARTICLE ENGINE LAYER
-    // ==========================================
     initCanvasEngine() {
         const cvs = document.getElementById('core-engine');
         const ctx = cvs.getContext('2d');
@@ -196,9 +186,6 @@ class LuxuryExperience {
         render();
     }
 
-    // ==========================================
-    // CINEMATIC OBSERVER
-    // ==========================================
     setupObservers() {
         const obs = new IntersectionObserver((entries) => {
             entries.forEach(e => {
@@ -211,9 +198,6 @@ class LuxuryExperience {
         document.querySelectorAll('.lux-panel').forEach(p => obs.observe(p));
     }
 
-    // ==========================================
-    // JAM REALTIME PRESISI TINGGI
-    // ==========================================
     startRealtimeClock() {
         const elTime = document.getElementById('val-time');
         const elDate = document.getElementById('val-date');
@@ -228,9 +212,6 @@ class LuxuryExperience {
         tick();
     }
 
-    // ==========================================
-    // PEMUTAR MUSIK KELAS ATAS
-    // ==========================================
     initAudioPlayer() {
         const list = [
             { t: "Shape of My Heart", s: "assets/music/song1.mp3", c: "assets/covers/cover1.jpg" },
@@ -284,9 +265,6 @@ class LuxuryExperience {
         load(idx);
     }
 
-    // ==========================================
-    // GENERATOR QUOTES
-    // ==========================================
     initQuoteGenerator() {
         const qts = [
             "Waktu adalah kanvas, dan kau melukisnya dengan keanggunan.",
@@ -308,9 +286,6 @@ class LuxuryExperience {
         setInterval(roll, 6000);
     }
 
-    // ==========================================
-    // KOTAK HADIAH (TYPEWRITER)
-    // ==========================================
     initInteractiveGift() {
         const b = document.getElementById('box-visual');
         const l = document.getElementById('letter-text');
@@ -331,7 +306,7 @@ class LuxuryExperience {
     }
 
     // ==========================================
-    // SISTEM FISIKA GAME BRUTAL (CANVAS API MURNI)
+    // SISTEM FISIKA GAME BRUTAL (REVISI TOUCH & HITBOX)
     // ==========================================
     initGameEngine() {
         const checkWin = () => { if(this.completedGames === 3) this.triggerSecret(); };
@@ -348,32 +323,30 @@ class LuxuryExperience {
             let player = { x: 50, y: 150, s: 20, dy: 0, grv: 0.7, jmp: -12, ground: true };
             let obs = [];
 
-            const jump = () => { if(player.ground) { player.dy = player.jmp; player.ground = false; } };
+            const jump = (e) => { 
+                if(e && e.type === 'touchstart') e.preventDefault();
+                if(player.ground) { player.dy = player.jmp; player.ground = false; } 
+            };
             window.addEventListener('keydown', (e) => { if(e.code==='Space') jump(); });
             cvs.addEventListener('mousedown', jump);
-            cvs.addEventListener('touchstart', jump);
+            cvs.addEventListener('touchstart', jump, { passive: false });
 
             const loop = () => {
                 if(!active) return;
                 ctx.clearRect(0,0,cvs.width,cvs.height);
 
-                // Ground
                 ctx.fillStyle = '#E0BFB8'; ctx.fillRect(0, cvs.height-15, cvs.width, 15);
 
-                // Physics
                 player.dy += player.grv; player.y += player.dy;
                 if(player.y + player.s >= cvs.height - 15) { player.y = cvs.height - 15 - player.s; player.dy = 0; player.ground = true; }
                 
-                // Draw Player
                 ctx.fillStyle = '#800020'; ctx.beginPath(); ctx.arc(player.x+10, player.y+10, 10, 0, Math.PI*2); ctx.fill();
 
-                // Obstacles
                 if(frames % 70 === 0) obs.push({ x: cvs.width, y: cvs.height - 35, w: 20, h: 20, spd: 7 });
                 for(let i=obs.length-1; i>=0; i--) {
                     let o = obs[i]; o.x -= o.spd;
                     ctx.fillStyle = '#2C2C2C'; ctx.fillRect(o.x, o.y, o.w, o.h);
                     
-                    // Collision (Circle to Rect approximation)
                     let cx = player.x+10, cy = player.y+10;
                     let testX = cx, testY = cy;
                     if(cx < o.x) testX = o.x; else if(cx > o.x+o.w) testX = o.x+o.w;
@@ -399,7 +372,7 @@ class LuxuryExperience {
             loop();
         });
 
-        // Game 2: Precision Catcher (Canvas Based)
+        // Game 2: Precision Catcher (Revisi Arsitektur Sentuh)
         const start2 = document.getElementById('btn-start-catch');
         start2.addEventListener('click', () => {
             document.getElementById('over-catch').style.display = 'none';
@@ -409,22 +382,41 @@ class LuxuryExperience {
 
             const spawn = () => {
                 if(!active) return;
-                items.push({ x: Math.random()*(cvs.width-40)+20, y: -20, r: 15, isGood: Math.random()>0.3, spd: Math.random()*2+2 });
-                setTimeout(spawn, Math.random()*800+400);
+                // Kecepatan jatuh diperhalus agar memberi kesan sinematik namun tetap reaktif
+                items.push({ x: Math.random()*(cvs.width-60)+30, y: -20, r: 16, isGood: Math.random()>0.3, spd: Math.random()*1.5+1.5 });
+                setTimeout(spawn, Math.random()*900+500);
             };
             spawn();
 
-            cvs.addEventListener('mousedown', (e) => {
+            // Arsitektur tunggal untuk menangani sentuhan di Smartphone & klik di Desktop
+            const handleInteraction = (e) => {
                 if(!active) return;
+                e.preventDefault(); // Menghentikan layar dari efek zoom/scroll saat layar ditekan
+                
                 const rect = cvs.getBoundingClientRect();
-                const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+                
+                // Normalisasi koordinat untuk layar sentuh vs tetikus (mouse)
+                let clientX, clientY;
+                if (e.touches && e.touches.length > 0) {
+                    clientX = e.touches[0].clientX;
+                    clientY = e.touches[0].clientY;
+                } else {
+                    clientX = e.clientX;
+                    clientY = e.clientY;
+                }
+
+                const mx = clientX - rect.left, my = clientY - rect.top;
+
                 for(let i=items.length-1; i>=0; i--) {
                     let it = items[i];
                     let dx = mx-it.x, dy = my-it.y;
-                    if(Math.sqrt(dx*dx + dy*dy) < it.r + 10) { // Toleransi hit
+                    
+                    // REVISI BRUTAL: Hitbox Radius diperluas hingga +45 piksel (Toleransi Area Sangat Luas)
+                    if(Math.sqrt(dx*dx + dy*dy) < it.r + 45) { 
                         if(it.isGood) { caught++; } else { caught = Math.max(0, caught-2); }
                         document.getElementById('hud-catch').textContent = `Tertangkap: ${caught} / 15`;
                         items.splice(i,1);
+                        
                         if(caught >= 15) {
                             active = false;
                             ctx.fillStyle = 'rgba(255,255,255,0.9)'; ctx.fillRect(0,0,cvs.width,cvs.height);
@@ -438,7 +430,11 @@ class LuxuryExperience {
                         break;
                     }
                 }
-            });
+            };
+
+            // Memasang pendengar kejadian (Event Listener) ganda
+            cvs.addEventListener('mousedown', handleInteraction);
+            cvs.addEventListener('touchstart', handleInteraction, { passive: false });
 
             const loop = () => {
                 if(!active) return;
@@ -491,24 +487,18 @@ class LuxuryExperience {
         };
     }
 
-    // ==========================================
-    // 3D MATHEMATICAL SECRET REVEAL (NO EMOJI)
-    // ==========================================
     triggerSecret() {
         const sec = document.getElementById('secret');
         const app = document.getElementById('lux-app');
         const pts = document.getElementById('secret-particles');
         const core = document.getElementById('secret-core');
         
-        // Sembunyikan konten utama
         Array.from(app.children).forEach(c => { if(c.id !== 'secret') c.style.display = 'none'; });
         sec.classList.remove('hidden-hard');
         
-        // Trigger CSS reflow untuk transisi opacity
         void sec.offsetWidth; 
         sec.classList.add('reveal-active');
 
-        // Kalkulasi Partikel Konvergen (Menuju Tengah)
         const w = window.innerWidth, h = window.innerHeight;
         for(let i=0; i<150; i++) {
             let p = document.createElement('div');
@@ -527,7 +517,6 @@ class LuxuryExperience {
             setTimeout(() => { p.style.left = `calc(50% - 3px)`; p.style.top = `calc(50% - 3px)`; p.style.opacity = '0'; }, 50);
         }
 
-        // Tampilkan Core 3D
         setTimeout(() => {
             pts.innerHTML = '';
             core.classList.add('show-core');
@@ -542,7 +531,6 @@ class LuxuryExperience {
     }
 }
 
-// Inisialisasi Eksekusi Utama saat DOM Siap
 document.addEventListener('DOMContentLoaded', () => {
     new LuxuryExperience();
 });
