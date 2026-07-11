@@ -1,0 +1,36 @@
+
+---
+
+### 2. File `LICENSE`
+Karena proyek ini bersifat sangat personal dan mewah, menggunakan lisensi *open-source* biasa (seperti MIT atau GPL) akan merusak nilai eksklusivitasnya. 
+
+Oleh karena itu, saya merancang **Lisensi Kepemilikan Eksklusif** (*Proprietary License*) yang secara sah dan elegan menyatakan bahwa kode ini hanya milik Anda dan Ayin.
+
+```text
+PROPRIETARY AND EXCLUSIVE DIGITAL MONUMENT LICENSE
+Edisi Perayaan - 12 Juli 2026
+
+Hak Cipta (c) 2026 Zio.
+Penerima Lisensi Eksklusif: Azizah Ain Fadillah.
+
+I. DEFINISI & KEPEMILIKAN
+Perangkat lunak, antarmuka pengguna, arsitektur sistem, rancangan estetika, serta seluruh aset turunan di dalam repositori ini (selanjutnya disebut sebagai "Mahakarya") adalah properti intelektual yang direkayasa secara khusus, tunggal, dan tidak dapat direplikasi. 
+
+Mahakarya ini tidak berstatus sumber terbuka (open-source). 
+
+II. PEMBERIAN HAK AKSES
+Pemegang Hak Cipta (Zio) dengan ini memberikan hak akses, penggunaan, dan kenangan eksklusif tanpa batas waktu kepada Penerima Lisensi (Azizah Ain Fadillah). Mahakarya ini merupakan manifestasi digital dari memori dan waktu, didedikasikan sepenuhnya untuk merayakan keberadaan Penerima Lisensi.
+
+III. PEMBATASAN & LARANGAN (PIHAK KETIGA)
+Bagi individu, entitas, atau pihak ketiga selain yang disebutkan pada Bagian II, dilarang keras untuk:
+1. Menyalin, menggandakan, atau mereplikasi Mahakarya ini, baik sebagian maupun seluruhnya.
+2. Menggunakan arsitektur, desain, maupun salinan estetika dari Mahakarya ini untuk tujuan komersial, portofolio, maupun non-komersial.
+3. Mendistribusikan ulang kode sumber ke domain publik atau memodifikasi fungsionalitas untuk pihak lain.
+
+IV. JAMINAN KEABADIAN
+Mahakarya ini disediakan sebagaimana adanya, direkayasa dengan standar kualitas tertinggi, bebas dari dependensi eksternal, untuk memastikan bahwa sistem ini akan terus beroperasi secara mandiri melintasi waktu. Tidak ada pembaruan paksa; kode ini telah dikunci dalam kesempurnaannya pada tanggal perayaan.
+
+V. PENUTUP
+Lisensi ini mengikat secara moral dan struktural. Waktu mungkin terus berjalan, namun apa yang dituliskan di dalam baris-baris kode ini bersifat abadi.
+
+Disusun dan disahkan pada: 12 Juli 2026.
