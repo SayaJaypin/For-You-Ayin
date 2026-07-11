@@ -2,7 +2,7 @@
  * ==============================================================================
  * ENGINE UTAMA: PERAYAAN AZIZAH AIN FADILLAH
  * DIBANGUN SECARA BRUTAL DENGAN STANDAR TERTINGGI 12 JULI 2026.
- * EDISI REVISI: OPTIMALISASI PRESISI HITBOX LAYAR SENTUH
+ * EDISI REVISI: PENYEMPURNAAN GRID GALERI, EKSPANSI QUOTES, & PESAN KHUSUS
  * ==============================================================================
  */
 
@@ -24,7 +24,7 @@ class LuxuryExperience {
         this.initGameEngine();
     }
 
-    // Menginjeksi seluruh struktur DOM untuk menjaga HTML tetap bersih
+    // Menginjeksi seluruh struktur DOM
     buildDOM() {
         document.getElementById('hero').innerHTML = `
             <div class="lux-panel">
@@ -43,16 +43,24 @@ class LuxuryExperience {
             </div>
         `;
 
+        // REVISI GRID GALERI: Total 8 Foto (Symmetrical Layout)
         document.getElementById('gallery').innerHTML = `
             <div class="lux-panel">
                 <h2 class="title-main text-center" style="font-size: 3rem;">Jejak Memori</h2>
                 <div class="gallery-grid">
+                    <!-- Baris Atas -->
                     <div class="frame-wrap r-3-4"><img src="assets/images/photo1.jpg" alt="Memori"></div>
                     <div class="frame-wrap r-3-4"><img src="assets/images/photo2.jpg" alt="Memori"></div>
                     <div class="frame-wrap r-9-16"><img src="assets/images/photo6.jpg" alt="Memori Spesial"></div>
+                    
+                    <!-- Baris Tengah ke Bawah -->
                     <div class="frame-wrap r-3-4"><img src="assets/images/photo3.jpg" alt="Memori"></div>
                     <div class="frame-wrap r-3-4"><img src="assets/images/photo4.jpg" alt="Memori"></div>
+                    
+                    <!-- Baris Tambahan (Mengisi Ruang Kosong) -->
                     <div class="frame-wrap r-3-4"><img src="assets/images/photo5.jpg" alt="Memori"></div>
+                    <div class="frame-wrap r-3-4"><img src="assets/images/photo8.jpg" alt="Memori Baru 1"></div>
+                    <div class="frame-wrap r-9-16"><img src="assets/images/photo7.jpg" alt="Memori Baru 2"></div>
                 </div>
             </div>
         `;
@@ -100,7 +108,6 @@ class LuxuryExperience {
                 <h2 class="title-main text-center" style="font-size: 3rem;">Tiga Ujian Kecil</h2>
                 <p class="text-body text-center" style="margin-bottom:3rem;">Selesaikan untuk membuka hadiah rahasia.</p>
                 
-                <!-- Game 1 -->
                 <div class="game-area" id="area-game-1">
                     <h3 class="game-title">Ujian Pertama: Langkah Tak Terhenti</h3>
                     <p class="game-desc">Ketuk layar secara presisi untuk melompat. Capai skor 1000.</p>
@@ -113,7 +120,6 @@ class LuxuryExperience {
                     </div>
                 </div>
 
-                <!-- Game 2 -->
                 <div class="game-area hidden-hard" id="area-game-2">
                     <h3 class="game-title">Ujian Kedua: Menjaga Presisi</h3>
                     <p class="game-desc">Sentuh 15 ornamen bulat merah. Hindari bentuk persegi gelap.</p>
@@ -126,7 +132,6 @@ class LuxuryExperience {
                     </div>
                 </div>
 
-                <!-- Game 3 -->
                 <div class="game-area hidden-hard" id="area-game-3">
                     <h3 class="game-title">Ujian Ketiga: Ruang Ingatan</h3>
                     <p class="game-desc">Jawab dengan hatimu.</p>
@@ -265,12 +270,18 @@ class LuxuryExperience {
         load(idx);
     }
 
+    // REVISI: Penambahan banyak quotes romantis dan elegan
     initQuoteGenerator() {
         const qts = [
             "Waktu adalah kanvas, dan kau melukisnya dengan keanggunan.",
             "Kehadiranmu mengubah hal biasa menjadi luar biasa.",
             "Setiap detik bersamamu adalah mahakarya yang tak ternilai.",
-            "Seperti cahaya, kelembutanmu menghangatkan tanpa menyilaukan."
+            "Seperti cahaya, kelembutanmu menghangatkan tanpa menyilaukan.",
+            "Bukan tentang seberapa jauh kita melangkah, melainkan dengan siapa kita berjalan.",
+            "Jika rindu memiliki wujud, mungkin ia akan menyerupai senyummu hari ini.",
+            "Dunia mungkin terlalu bising, namun di dekatmu, aku menemukan ketenangan yang abadi.",
+            "Kamu adalah alasan mengapa hari esok selalu pantas untuk ditunggu.",
+            "Ada jutaan kata di dunia, namun tak satupun cukup untuk mendeskripsikan betapa berharganya dirimu."
         ];
         const el = document.getElementById('quote-text');
         let i = 0;
@@ -286,10 +297,13 @@ class LuxuryExperience {
         setInterval(roll, 6000);
     }
 
+    // REVISI: Penambahan kalimat "titip salam ke bunda yaa sayang :3"
     initInteractiveGift() {
         const b = document.getElementById('box-visual');
         const l = document.getElementById('letter-text');
-        const txt = "Di hari istimewamu ini, aku ingin mengingatkanmu bahwa eksistensimu adalah anugerah terbesar bagi sekelilingmu. Teruslah melangkah dengan hatimu yang lembut. Ruang ini akan selalu menyimpan cerita kita dengan sempurna. Selamat bertambah usia, cintaku.";
+        
+        // Teks digabung secara seamless
+        const txt = "Di hari istimewamu ini, aku ingin mengingatkanmu bahwa eksistensimu adalah anugerah terbesar bagi sekelilingmu. Teruslah melangkah dengan hatimu yang lembut. Ruang ini akan selalu menyimpan cerita kita dengan sempurna. Selamat bertambah usia, cintaku. Oh iya, titip salam ke bunda yaa sayang :3";
         
         b.addEventListener('click', () => {
             b.style.transform = "scale(0) rotate(180deg)";
@@ -305,13 +319,9 @@ class LuxuryExperience {
         }, { once:true });
     }
 
-    // ==========================================
-    // SISTEM FISIKA GAME BRUTAL (REVISI TOUCH & HITBOX)
-    // ==========================================
     initGameEngine() {
         const checkWin = () => { if(this.completedGames === 3) this.triggerSecret(); };
 
-        // Game 1: Endless Runner
         const start1 = document.getElementById('btn-start-dino');
         start1.addEventListener('click', () => {
             document.getElementById('over-dino').style.opacity = 0;
@@ -372,7 +382,6 @@ class LuxuryExperience {
             loop();
         });
 
-        // Game 2: Precision Catcher (Revisi Arsitektur Sentuh)
         const start2 = document.getElementById('btn-start-catch');
         start2.addEventListener('click', () => {
             document.getElementById('over-catch').style.display = 'none';
@@ -382,20 +391,16 @@ class LuxuryExperience {
 
             const spawn = () => {
                 if(!active) return;
-                // Kecepatan jatuh diperhalus agar memberi kesan sinematik namun tetap reaktif
                 items.push({ x: Math.random()*(cvs.width-60)+30, y: -20, r: 16, isGood: Math.random()>0.3, spd: Math.random()*1.5+1.5 });
                 setTimeout(spawn, Math.random()*900+500);
             };
             spawn();
 
-            // Arsitektur tunggal untuk menangani sentuhan di Smartphone & klik di Desktop
             const handleInteraction = (e) => {
                 if(!active) return;
-                e.preventDefault(); // Menghentikan layar dari efek zoom/scroll saat layar ditekan
+                e.preventDefault(); 
                 
                 const rect = cvs.getBoundingClientRect();
-                
-                // Normalisasi koordinat untuk layar sentuh vs tetikus (mouse)
                 let clientX, clientY;
                 if (e.touches && e.touches.length > 0) {
                     clientX = e.touches[0].clientX;
@@ -411,7 +416,6 @@ class LuxuryExperience {
                     let it = items[i];
                     let dx = mx-it.x, dy = my-it.y;
                     
-                    // REVISI BRUTAL: Hitbox Radius diperluas hingga +45 piksel (Toleransi Area Sangat Luas)
                     if(Math.sqrt(dx*dx + dy*dy) < it.r + 45) { 
                         if(it.isGood) { caught++; } else { caught = Math.max(0, caught-2); }
                         document.getElementById('hud-catch').textContent = `Tertangkap: ${caught} / 15`;
@@ -432,7 +436,6 @@ class LuxuryExperience {
                 }
             };
 
-            // Memasang pendengar kejadian (Event Listener) ganda
             cvs.addEventListener('mousedown', handleInteraction);
             cvs.addEventListener('touchstart', handleInteraction, { passive: false });
 
@@ -453,7 +456,6 @@ class LuxuryExperience {
             loop();
         });
 
-        // Game 3: Elegant Quiz
         const initQuiz = () => {
             const data = [
                 { q: "Warna dominan apa yang menghiasi ruang ini?", o: ["Biru Malam", "Rose Gold & Burgundy", "Hijau Zamrud"], a: 1 },
